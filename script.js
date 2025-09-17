@@ -114,7 +114,7 @@ function initCarousel() {
     // Initialize Swiper
     const swiper = new Swiper('.gallery-swiper', {
         loop: true,
-        autoplay: false,
+        autoplay: false, // Explicitly disable auto-advance
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
@@ -150,10 +150,11 @@ function populateGigs() {
     futureGigs.forEach(gig => {
         const li = document.createElement('li');
         const encodedAddress = encodeURIComponent(gig.address);
+        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
         li.innerHTML = `
             <div class="gig-date">${formatDate(gig.date)}</div>
             <div class="gig-venue">${gig.venue}</div>
-            <div class="gig-address"><a href="geo:0,0?q=${encodedAddress}" target="_blank">${gig.address}</a></div>
+            <div class="gig-address"><a href="geo:0,0?q=${encodedAddress}" onclick="window.open('${googleMapsUrl}', '_blank'); return false;" target="_blank">${gig.address}</a></div>
             <div class="gig-time">${gig.time}</div>
             <div class="gig-description">${gig.description}</div>
         `;
@@ -190,6 +191,14 @@ function populatePoems() {
     });
 }
 
+// Hamburger Menu Toggle
+function toggleMenu() {
+    const menu = document.querySelector('.nav-menu');
+    const hamburger = document.querySelector('.hamburger');
+    menu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+
 // Initialize everything on page load
 window.addEventListener('DOMContentLoaded', () => {
     setHeaderImage();
@@ -198,4 +207,7 @@ window.addEventListener('DOMContentLoaded', () => {
     populateBios('guest-artists', guestArtists);
     populatePoems();
     initCarousel();
+
+    // Add hamburger menu event listener
+    document.querySelector('.hamburger').addEventListener('click', toggleMenu);
 });
