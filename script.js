@@ -1,96 +1,138 @@
 // Data for sections - Edit these arrays/objects to update content
 
-// Image Slideshow: Add image paths (place images in an 'images' folder in your repo)
-const slides = [
-    'images/slide1.jpg',
-    'images/slide2.jpg',
-    'images/slide3.jpg'
+// Header Image: Single image path (place in 'images' folder in your repo)
+const headerImage = 'images/header.jpg';
+
+// Gallery Images: Add image paths (place images in 'images' folder in your repo)
+const galleryImages = [
+    'images/gallery1.jpg',
+    'images/gallery2.jpg',
+    'images/gallery3.jpg',
+    'images/gallery4.jpg',
+    'images/gallery5.jpg',
+    'images/gallery6.jpg'
     // Add more as needed
 ];
 
-// Upcoming Shows: Array of gig objects with date in YYYY-MM-DD format
+// Upcoming Shows: Array of gig objects with date in YYYY-MM-DD format and address
+// Dates in the past are hidden
 const gigs = [
-    { date: '2025-10-01', time: '8:00 PM', venue: 'Local Theater', description: 'Poetry Night' },
-    { date: '2025-09-15', time: '7:00 PM', venue: 'City Hall', description: 'Past Event' }, // This will be hidden
+    {
+        date: '2025-10-09',
+        time: '6:00 PM',
+        venue: 'Zydeco - Outdoor Patio',
+        address: '112 E 5th St, Hermann, MO 65041',
+        description: ''
+    },
+    {
+        date: '2026-01-10',
+        time: '5:00 PM',
+        venue: '1837',
+        address: '403 Market St, Hermann, MO 65041',
+        description: ''
+    },
     // Add more gigs here
 ];
 
 // About Us: Array of 4 people
 const aboutUs = [
     {
-        name: 'Person 1',
-        bio: 'Short bio for Person 1, passionate about poetry and performance.',
-        image: 'images/person1.jpg'
+        name: 'Keri',
+        bio: 'Keri is the kindest soul you may ever meet. She lives for her three children, Ronald, Donald, and Flonald, and her husband, Blart. In her free time, she loves to garden, and specializes in raising that rarity, pre-pickled okra.',
+        image: 'images/keri.jpg'
     },
     {
-        name: 'Person 2',
-        bio: 'Short bio for Person 2, a creative soul with a love for words.',
-        image: 'images/person2.jpg'
+        name: 'Keely',
+        bio: 'Keely is in the running for the busiest person ever to live, and may actually be two people. She lives on a wee farm with three of every animal, in a bid to outdo Noah. She is skilled at nearly everything that she does, to the admiration of many.',
+        image: 'images/keely.jpg'
     },
     {
-        name: 'Person 3',
-        bio: 'Short bio for Person 3, blending music and poetry.',
-        image: 'images/person3.jpg'
+        name: 'Emily',
+        bio: 'Emily is a free spirit, at heart, and embodies every kind of creativity. She specializes in playing instruments whilst standing on her head, and has been heard to speculate about branching out into underwater performances. She is a nationally ranked precision plate-thrower, and is expected to take top honors at this years Nationals.',
+        image: 'images/emily.jpg'
     },
     {
-        name: 'Person 4',
-        bio: 'Short bio for Person 4, dedicated to storytelling.',
-        image: 'images/person4.jpg'
+        name: 'Cecily',
+        bio: 'Cecily lives her life dedicated to the avoidance of peaking too soon. She has 13 children, all girls, and intends to attempt the takeover of a small country, when the time is right. She plays every instrument, to varying levels of mediocrity.',
+        image: 'images/cec.jpg'
     }
 ];
 
 // Guest Artists: Up to 3 people (add fewer if needed)
 const guestArtists = [
     {
-        name: 'Guest 1',
-        bio: 'Guest artist with a unique perspective on poetry.',
-        image: 'images/guest1.jpg'
+        name: 'Rayna',
+        bio: 'We love Rayna. She\'s the best.',
+        image: 'images/rayna.jpg'
     },
-    {
-        name: 'Guest 2',
-        bio: 'Guest artist known for evocative performances.',
-        image: 'images/guest2.jpg'
-    }
+    // {
+    //     name: 'Guest 2',
+    //     bio: 'Guest artist known for evocative performances.',
+    //     image: 'images/guest2.jpg'
+    // }
     // Add a third if needed
 ];
 
 // Our Poetry: Array of poems
 const poems = [
     {
-        title: 'Poem 1',
-        content: `Line 1
-Line 2
-Line 3`
+        title: 'Encounters on J',
+        content: `Deer.
+Can I thought was a Raccoon.
+Fog
+11 Million Bugs.
+No pig.`
     },
     {
-        title: 'Poem 2',
-        content: `Another line 1
-Another line 2`
+        title: 'Angry drummer',
+        content: `WTF, who left the cash?`
     }
     // Add more poems
 ];
 
-// Function to initialize slideshow
-function initSlideshow() {
-    const container = document.querySelector('.slideshow-container');
-    slides.forEach((src, index) => {
+// Function to set header image
+function setHeaderImage() {
+    const container = document.querySelector('.header-image');
+    container.style.backgroundImage = `url(${headerImage})`;
+}
+
+// Function to initialize carousel
+function initCarousel() {
+    const wrapper = document.querySelector('.swiper-wrapper');
+
+    // Populate slides
+    galleryImages.forEach((src, index) => {
         const slide = document.createElement('div');
-        slide.classList.add('slide');
-        if (index === 0) slide.style.display = 'block';
+        slide.classList.add('swiper-slide');
         const img = document.createElement('img');
         img.src = src;
-        img.alt = `Slide ${index + 1}`;
+        img.alt = `Gallery Image ${index + 1}`;
         slide.appendChild(img);
-        container.appendChild(slide);
+        wrapper.appendChild(slide);
     });
 
-    let currentSlide = 0;
-    setInterval(() => {
-        const slidesElements = document.querySelectorAll('.slide');
-        slidesElements[currentSlide].style.display = 'none';
-        currentSlide = (currentSlide + 1) % slides.length;
-        slidesElements[currentSlide].style.display = 'block';
-    }, 3000); // Change slide every 3 seconds
+    // Initialize Swiper
+    const swiper = new Swiper('.gallery-swiper', {
+        loop: true,
+        autoplay: false,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+        effect: 'slide',
+        speed: 500
+    });
+}
+
+// Function to format date with day of the week
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
 }
 
 // Function to populate upcoming shows
@@ -107,7 +149,14 @@ function populateGigs() {
 
     futureGigs.forEach(gig => {
         const li = document.createElement('li');
-        li.innerHTML = `<strong>${gig.date} at ${gig.time}</strong> - ${gig.venue}<br>${gig.description}`;
+        const encodedAddress = encodeURIComponent(gig.address);
+        li.innerHTML = `
+            <div class="gig-date">${formatDate(gig.date)}</div>
+            <div class="gig-venue">${gig.venue}</div>
+            <div class="gig-address"><a href="geo:0,0?q=${encodedAddress}" target="_blank">${gig.address}</a></div>
+            <div class="gig-time">${gig.time}</div>
+            <div class="gig-description">${gig.description}</div>
+        `;
         list.appendChild(li);
     });
 }
@@ -143,9 +192,10 @@ function populatePoems() {
 
 // Initialize everything on page load
 window.addEventListener('DOMContentLoaded', () => {
-    initSlideshow();
+    setHeaderImage();
     populateGigs();
-    populateBios('about-us', aboutUs);
+    populateBios('band', aboutUs);
     populateBios('guest-artists', guestArtists);
     populatePoems();
+    initCarousel();
 });

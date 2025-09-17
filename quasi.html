@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexisonfire - Official Site</title>
+    <title>Quasi Local - Official Site</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="#slideshow">Home</a></li>
+            <li><a href="#header">Home</a></li>
             <li><a href="#upcoming-shows">Shows</a></li>
-            <li><a href="#about-us">About</a></li>
-            <li><a href="#guest-artists">Guests</a></li>
-            <li><a href="#our-poetry">Poetry</a></li>
+            <li><a href="#band">The Band</a></li>
+            <li><a href="#guest-artists">Guest Artists</a></li>
+            <li><a href="#our-poetry">Our Poetry</a></li>
+            <li><a href="#gallery">Pics or it didn't happen</a></li>
         </ul>
     </nav>
 
-    <section id="slideshow">
-        <h1>Quasi Local</h1>
-        <div class="slideshow-container">
-            <!-- Slides will be added dynamically via JS -->
+    <section id="header">
+        <div class="header-image">
+            <!-- Header image will be added dynamically via JS -->
+            <h1>Quasi Local</h1>
         </div>
     </section>
 
@@ -32,7 +34,7 @@
         </ul>
     </section>
 
-    <section id="about-us">
+    <section id="band">
         <h2>The Band</h2>
         <div class="bio-container">
             <!-- Bios will be added dynamically via JS -->
@@ -53,6 +55,19 @@
         </div>
     </section>
 
+    <section id="gallery">
+        <!-- <h2>Gallery</h2> -->
+        <div class="swiper gallery-swiper">
+            <div class="swiper-wrapper">
+                <!-- Slides will be added dynamically via JS -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
