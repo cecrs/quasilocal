@@ -61,8 +61,8 @@ const aboutUs = [
 // Guest Artists: Up to 3 people (add fewer if needed)
 const guestArtists = [
     {
-        name: 'Rayna',
-        bio: 'We love Rayna. She\'s the best.',
+        name: 'Reyna',
+        bio: 'We love Reyna. She\'s the best.',
         image: 'images/rayna.jpg'
     },
     // {
