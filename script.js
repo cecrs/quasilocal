@@ -85,7 +85,7 @@ No pig.`
     },
     {
         title: 'Angry drummer',
-        content: `WTF, who left the cash?`
+        content: `WTH, who left the cash?`
     }
     // Add more poems
 ];
