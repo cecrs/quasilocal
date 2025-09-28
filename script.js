@@ -18,14 +18,14 @@ const galleryImages = [
 // Dates in the past are hidden
 const gigs = [
     {
-        date: '2025-10-10',
+        date: '2025-10-09',
         time: '6:00 PM',
         venue: 'Zydeco - Outdoor Patio',
         address: '112 E 5th St, Hermann, MO 65041',
         description: ''
     },
     {
-        date: '2026-01-11',
+        date: '2026-01-10',
         time: '5:00 PM',
         venue: '1837',
         address: '403 Market St, Hermann, MO 65041',
@@ -62,8 +62,8 @@ const aboutUs = [
 const guestArtists = [
     {
         name: 'Reyna',
-        bio: 'We love Reyna. She\'s the best.',
-        image: 'images/rayna.jpg'
+        bio: 'Reyna is on track to become the premier guitar wielding therapist in the state. We actually think she may secretly be the 5th Beatle. Her hobby is training squirrels to sing in choirs, and she tells us that they are really starting to nail the three part harmonies.',
+        image: 'images/reyna.jpg'
     },
     // {
     //     name: 'Guest 2',
@@ -130,9 +130,10 @@ function initCarousel() {
 
 // Function to format date with day of the week
 function formatDate(dateStr) {
-    const date = new Date(dateStr);
+    const [year, month, day] = dateStr.split('-').map(Number);
+    const date = new Date(year, month - 1, day); // month is 0-based in JS
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
+    return date.toLocaleDateString('en-US', options); // e.g., "Friday, October 10, 2025"
 }
 
 // Function to populate upcoming shows
@@ -140,7 +141,15 @@ function populateGigs() {
     const list = document.getElementById('gigs-list');
     const section = document.getElementById('upcoming-shows');
     const now = new Date();
-    const futureGigs = gigs.filter(gig => new Date(gig.date) > now);
+    // Normalize 'now' to start of day for comparison
+    now.setHours(0, 0, 0, 0);
+    
+    const futureGigs = gigs.filter(gig => {
+        // Parse gig.date as local date for comparison
+        const [year, month, day] = gig.date.split('-').map(Number);
+        const gigDate = new Date(year, month - 1, day);
+        return gigDate >= now;
+    });
 
     if (futureGigs.length === 0) {
         section.classList.add('hidden');

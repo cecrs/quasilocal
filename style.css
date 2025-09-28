@@ -214,12 +214,20 @@ h2 {
     margin: 10px 0;
 }
 
+#poems-container {
+    max-width: 1400px; /* Adjusted for 4 cards with margins */
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
 .poem {
     background: var(--card-background);
     color: var(--card-text);
     padding: 20px;
-    margin: 20px 0;
-    max-width: 600px;
+    max-width: 300px;
     width: 100%;
     border-radius: 5px;
     white-space: pre-wrap;
@@ -284,6 +292,7 @@ h2 {
 .hidden {
     display: none;
 }
+
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
     /* Header Image */
@@ -361,5 +370,11 @@ h2 {
 
     .gallery-swiper {
         height: 300px;
+    }
+
+    #poems-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
