@@ -18,14 +18,14 @@ const galleryImages = [
 // Dates in the past are hidden
 const gigs = [
     {
-        date: '2025-10-09',
+        date: '2026-02-17',
         time: '6:00 PM',
         venue: 'Zydeco - Outdoor Patio',
         address: '112 E 5th St, Hermann, MO 65041',
-        description: ''
+        description: 'Mardi Gras'
     },
     {
-        date: '2026-01-10',
+        date: '2026-08-23',
         time: '5:00 PM',
         venue: '1837',
         address: '403 Market St, Hermann, MO 65041',
